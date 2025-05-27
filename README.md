@@ -2,7 +2,7 @@
 
 <div align="center">
   <a href="https://trianglesplatting.github.io/">Project page</a> &nbsp;|&nbsp;
-  <a href="https://arxiv.org/abs/2411.14974">Arxiv</a> &nbsp;|&nbsp;
+  <a href="https://arxiv.org/abs/2505.19175">Arxiv</a> &nbsp;|&nbsp;
 </div>
 <br>
 
