@@ -1,0 +1,6 @@
+[submodule "submodules/simple-knn"]
+	path = submodules/simple-knn
+	url = https://gitlab.inria.fr/bkerbl/simple-knn.git
+[submodule "submodules/diff-triangle-rasterization"]
+	path = submodules/diff-triangle-rasterization
+	url = https://github.com/trianglesplatting/diff-triangle-rasterization.git
