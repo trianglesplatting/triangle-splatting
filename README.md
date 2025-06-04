@@ -81,6 +81,8 @@ To replicate the results of our paper, you can use the following command:
 python full_eval.py --output_path <output_path> -m360 <path_to_MipNeRF360> -tat <path_to_T&T> -db <path_to_DB>
 ```
 
+## Game engine
+If you want to run some scene on a game engine for yourself, you can download the *Garden* and *Room* scenes from the following [link](https://drive.google.com/drive/folders/1_TMXEFTdEACpHHvsmc5UeZMM-cMgJ3xW?usp=sharing). 
 
 ## Acknowledgements
 This project is built upon 3D Convex Splatting and 3D Gaussian Splatting. We want to thank the authors for their contributions.
