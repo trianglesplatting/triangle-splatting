@@ -78,7 +78,7 @@ python create_video.py -m <path_to_model>
 ## Replication of the results
 To replicate the results of our paper, you can use the following command:
 ```bash
-python full_eval.py --output_path <output_path> -m360 <path_to_MipNeRF360> -tat <path_to_T&T> -db <path_to_DB>
+python full_eval.py --output_path <output_path> -m360 <path_to_MipNeRF360> -tat <path_to_T&T>
 ```
 
 ## Game engine
