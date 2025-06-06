@@ -82,7 +82,28 @@ python full_eval.py --output_path <output_path> -m360 <path_to_MipNeRF360> -tat 
 ```
 
 ## Game engine
-If you want to run some scene on a game engine for yourself, you can download the *Garden* and *Room* scenes from the following [link](https://drive.google.com/drive/folders/1_TMXEFTdEACpHHvsmc5UeZMM-cMgJ3xW?usp=sharing). 
+To create your own .off file:
+
+1. Train your scene using ```train_game_engine.py```. This version includes some modifications, such as pruning low-opacity triangles and applying an additional loss in the final training iterations to encourage higher opacity. This makes the result more compatible with how game engines render geometry. These modifications are experimental, so feel free to adjust them or try your own variants. (For example, increasing the normal loss often improves quality by making triangles better aligned and reducing black holes.)
+
+2. Run ```create_off.py``` to convert the optimized triangles into a .off file that can be imported into a game engine. You only need to provide the path to the trained model (e.g., point_cloud_state_dict.pt) and specify the desired output file name (e.g., mesh_colored.off).
+
+Note: The script generates fully opaque triangles. If you want to include per-triangle opacity, you can extract and activate the raw opacity values using:
+```
+opacity_raw = sd["opacity"]
+opacity = torch.sigmoid(opacity_raw.view(-1))
+opacity_uint8 = (opacity * 255).to(torch.uint8)
+```
+Each triangle has a single opacity value, so if needed, assign the same value to all three of its vertices when exporting with:
+```
+for i, face in enumerate(faces):
+            r, g, b = colors[i].tolist()
+            a = opacity_uint8[i].item()
+            f.write(f"3 {face[0].item()} {face[1].item()} {face[2].item()} {r} {g} {b} {a}\n")
+```
+
+If you want to run some pretrained scene on a game engine for yourself, you can download the *Garden* and *Room* scenes from the [following link](https://drive.google.com/drive/folders/1_TMXEFTdEACpHHvsmc5UeZMM-cMgJ3xW?usp=sharing). 
+
 
 ## Acknowledgements
 This project is built upon 3D Convex Splatting and 3D Gaussian Splatting. We want to thank the authors for their contributions.
