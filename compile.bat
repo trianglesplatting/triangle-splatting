@@ -1,6 +1,6 @@
 @echo off
 
-cd submodules\diff-convex-rasterization
+cd submodules\diff-triangle-rasterization
 
 :: Delete build and egg-info folders if they exist
 if exist build rmdir /s /q build
