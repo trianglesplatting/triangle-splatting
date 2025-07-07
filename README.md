@@ -112,11 +112,22 @@ J. Held and A. Cioppa are funded by the F.R.S.-FNRS. The research reported in th
 
 
 ## BibTeX
+If you find our work interesting or use any part of it, please cite our paper:
 ```bibtex
 @article{Held2025Triangle,
 title = {Triangle Splatting for Real-Time Radiance Field Rendering},
 author = {Held, Jan and Vandeghen, Renaud and Deliege, Adrien and Hamdi, Abdullah and Cioppa, Anthony and Giancola, Silvio and Vedaldi, Andrea and Ghanem, Bernard and Tagliasacchi, Andrea and Van Droogenbroeck, Marc},
 journal = {arXiv},
 year = {2025},
+}
+```
+
+As Triangle Splatting builds heavily on top of 3D Convex Splatting, please also cite it.
+```bibtex
+@InProceedings{held20243d,
+title={3D Convex Splatting: Radiance Field Rendering with 3D Smooth Convexes},
+  author={Held, Jan and Vandeghen, Renaud and Hamdi, Abdullah and Deliege, Adrien and Cioppa, Anthony and Giancola, Silvio and Vedaldi, Andrea and Ghanem, Bernard and Van Droogenbroeck, Marc},
+  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  year = {2025},
 }
 ```
