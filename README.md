@@ -104,13 +104,6 @@ for i, face in enumerate(faces):
 
 If you want to run some pretrained scene on a game engine for yourself, you can download the *Garden* and *Room* scenes from the [following link](https://drive.google.com/drive/folders/1_TMXEFTdEACpHHvsmc5UeZMM-cMgJ3xW?usp=sharing). 
 
-
-## Acknowledgements
-This project is built upon 3D Convex Splatting and 3D Gaussian Splatting. We want to thank the authors for their contributions.
-
-J. Held and A. Cioppa are funded by the F.R.S.-FNRS. The research reported in this publication was supported by funding from KAUST Center of Excellence on GenAI, under award number 5940. This work was also supported by KAUST Ibn Rushd Postdoc Fellowship program. The present research benefited from computational resources made available on Lucia, the Tier-1 supercomputer of the Walloon Region, infrastructure funded by the Walloon Region under the grant agreement n°1910247.
-
-
 ## BibTeX
 If you find our work interesting or use any part of it, please cite our paper:
 ```bibtex
@@ -131,3 +124,9 @@ title={3D Convex Splatting: Radiance Field Rendering with 3D Smooth Convexes},
   year = {2025},
 }
 ```
+
+## Acknowledgements
+This project is built upon 3D Convex Splatting and 3D Gaussian Splatting. We want to thank the authors for their contributions.
+
+J. Held and A. Cioppa are funded by the F.R.S.-FNRS. The research reported in this publication was supported by funding from KAUST Center of Excellence on GenAI, under award number 5940. This work was also supported by KAUST Ibn Rushd Postdoc Fellowship program. The present research benefited from computational resources made available on Lucia, the Tier-1 supercomputer of the Walloon Region, infrastructure funded by the Walloon Region under the grant agreement n°1910247.
+
