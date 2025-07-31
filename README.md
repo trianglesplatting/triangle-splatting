@@ -21,6 +21,10 @@ This repo contains the official implementation for the paper "Triangle Splatting
 
 Our work represents a significant advancement in radiance field rendering by introducing 3D triangles as rendering primitive. By leveraging the same primitive used in classical mesh representations, our method bridges the gap between neural rendering and traditional graphics pipelines. Triangle Splatting offers a compelling alternative to volumetric and implicit methods, achieving high visual fidelity with faster rendering performance. These results establish Triangle Splatting as a promising step toward mesh-aware neural rendering, unifying decades of GPU-accelerated graphics with modern differentiable frameworks.
 
+## Trained Models and Rendered Test Views on MipNeRF360
+
+All trained models and rendered test views for MipNeRF360 are available at the [following link.](https://drive.google.com/drive/folders/14Ve16-0ZR4fg-F2Sq1XbZgCHRVHAUWot?usp=sharing)
+
 ## Cloning the Repository + Installation
 
 The code has been used and tested with Python 3.11 and CUDA 12.6.
