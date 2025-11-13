@@ -1,4 +1,4 @@
-<h1 align="center">Triangle Splatting for Real-Time Radiance Field Rendering</h1>
+<h1 align="center">Triangle Splatting for Real-Time Radiance Field Rendering [3DV 2026]</h1>
 
 <div align="center">
   <a href="https://trianglesplatting.github.io/">Project page</a> &nbsp;|&nbsp;
@@ -7,7 +7,7 @@
 <br>
 
 <p align="center">
-  Jan Held*, Renaud Vandeghen*, Adrien Deliege, Abdullah Hamdi, Silvio Giancola, Anthony Cioppa, Andrea Vedaldi, Bernard Ghanem, Andrea Tagliasacchi, Marc Van Droogenbroeck
+  Jan Held*, Renaud Vandeghen*, Adrien Deliege, Abdullah Hamdi, Daniel Rebain, Silvio Giancola, Anthony Cioppa, Andrea Vedaldi, Bernard Ghanem, Andrea Tagliasacchi, Marc Van Droogenbroeck
 </p>
 
 <br>
