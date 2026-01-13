@@ -93,6 +93,26 @@ To render a video, you can use the following command:
 python create_video.py -m <path_to_model>
 ```
 
+## Interactive Viewing with MeshLab
+To interactively view the trained model with mouse controls (rotate, translate, zoom), first convert it to an OFF file and then open it with MeshLab:
+
+```bash
+# Convert model to OFF file
+python create_off.py \
+    --checkpoint_path <path_to_model>/point_cloud/iteration_<N>/point_cloud_state_dict.pt \
+    --output_name mesh_colored.off
+
+# View with MeshLab
+meshlab mesh_colored.off
+```
+
+MeshLab controls:
+- **Rotate**: Left click + drag
+- **Translate**: Ctrl + left click + drag (or middle click + drag)
+- **Zoom**: Scroll wheel
+
+Install MeshLab if needed: `sudo apt install meshlab` (Ubuntu/Debian) or download from [meshlab.net](https://www.meshlab.net/).
+
 ## Replication of the results
 To replicate the results of our paper, you can use the following command:
 ```bash
