@@ -21,6 +21,7 @@
 #
 
 import os
+import re
 import torch
 from random import randint
 from utils.loss_utils import l1_loss, ssim, equilateral_regularizer, l2_loss
@@ -62,8 +63,20 @@ def training(
     triangles.training_setup(opt, opt.lr_mask, opt.feature_lr, opt.opacity_lr, opt.lr_sigma, opt.lr_triangles_points_init)
     
     if checkpoint:
-        (model_params, first_iter) = torch.load(checkpoint)
-        triangles.restore(model_params, opt)
+        # Check if checkpoint is a point_cloud_state_dict.pt file (saved by save_ply)
+        if checkpoint.endswith('point_cloud_state_dict.pt'):
+            # Extract iteration from path (e.g., "iteration_7000")
+            match = re.search(r'iteration_(\d+)', checkpoint)
+            if match:
+                first_iter = int(match.group(1))
+            # Load using the load method which handles this format
+            checkpoint_dir = os.path.dirname(checkpoint)
+            triangles.load(checkpoint_dir)
+            triangles.training_setup(opt, opt.lr_mask, opt.feature_lr, opt.opacity_lr, opt.lr_sigma, opt.lr_triangles_points_init)
+        else:
+            # Original format: tuple of (model_params, first_iter)
+            (model_params, first_iter) = torch.load(checkpoint)
+            triangles.restore(model_params, opt)
 
     bg_color = [1, 1, 1] if dataset.white_background else [0, 0, 0]
     background = torch.tensor(bg_color, dtype=torch.float32, device="cuda")

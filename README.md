@@ -60,6 +60,21 @@ If you want to train the model on outdoor scenes, you should add the following c
 python train.py -s <path_to_scenes> -m <output_model_path> --outdoor --eval
 ```
 
+## Resuming Training from Checkpoint
+To resume training from a previously saved checkpoint, use the `--start_checkpoint` flag with the path to the `point_cloud_state_dict.pt` file:
+```bash
+python train.py -s <path_to_scenes> -m <output_model_path> --eval \
+    --start_checkpoint <output_model_path>/point_cloud/iteration_<N>/point_cloud_state_dict.pt
+```
+
+For example, to resume training from iteration 7000:
+```bash
+python train.py -s /path/to/scene -m /path/to/output --eval \
+    --start_checkpoint /path/to/output/point_cloud/iteration_7000/point_cloud_state_dict.pt
+```
+
+The training will automatically detect the iteration number from the checkpoint path and continue from there.
+
 ## Rendering
 To render a scene, you can use the following command:
 ```bash
