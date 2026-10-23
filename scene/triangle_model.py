@@ -641,9 +641,9 @@ class TriangleModel:
         noise_in_plane = noise - dot_products * normals.unsqueeze(1)
 
         new_triangles_points_noisy = new_triangles_points + noise_in_plane
-
-        opacity_old = self.get_opacity[idxs]
-        opacity_new = inverse_sigmoid(1.0 - torch.pow(1.0 - opacity_old, 1.0 / 2))
+        
+        q = torch.sqrt(torch.sigmoid(-self._opacity[idxs]))
+        opacity_new = torch.log((1.0 - q) / q)
         
         return (torch.cat([self._triangles_points[idxs], new_triangles_points_noisy], dim=0),
                 torch.cat([self._features_dc[idxs], self._features_dc[idxs]], dim=0),
