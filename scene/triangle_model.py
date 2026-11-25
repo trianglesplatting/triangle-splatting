@@ -281,6 +281,15 @@ class TriangleModel:
         self._cumsum_of_points_per_triangle = cumsum_of_points_per_triangle
         self._number_of_points = number_of_points
 
+        # Initialize training-related tracking tensors
+        num_triangles = self._triangles_points.shape[0]
+        self.triangle_area = torch.zeros((num_triangles,), dtype=torch.float, device="cuda")
+        self.image_size = torch.zeros((num_triangles,), dtype=torch.float, device="cuda")
+        self.importance_score = torch.zeros((num_triangles,), dtype=torch.float, device="cuda")
+        self.max_scaling = torch.zeros((num_triangles,), dtype=torch.float, device="cuda")
+        self.max_radii2D = torch.zeros((num_triangles,), dtype=torch.float, device="cuda")
+        self.max_density_factor = torch.zeros((num_triangles,), dtype=torch.float, device="cuda")
+
         l = [
             {'params': [self._features_dc], 'lr': 0.00001, "name": "f_dc"},
             {'params': [self._features_rest], 'lr': 0.00001 / 20.0, "name": "f_rest"},
@@ -682,7 +691,11 @@ class TriangleModel:
         probs = torch.nan_to_num(probs, nan=0.0, posinf=0.0, neginf=0.0)
         probs = torch.clamp(probs, min=0.0)
         probs = probs / (probs.sum() + torch.finfo(torch.float32).eps)
-        sampled_idxs = torch.multinomial(probs, min(num, (probs>0).sum().item()), replacement=False)
+        n_sample = min(num, (probs>0).sum().item())
+        if n_sample <= 0:
+            # No valid samples available (e.g., after loading checkpoint with zeroed tracking tensors)
+            return torch.tensor([], dtype=torch.long, device=probs.device)
+        sampled_idxs = torch.multinomial(probs, n_sample, replacement=False)
 
         if alive_indices is not None:
             sampled_idxs = alive_indices[sampled_idxs]
@@ -746,6 +759,11 @@ class TriangleModel:
         big_mask   = compar > self.split_size
 
         add_idx = self._sample_alives(probs=probs, num=num_gs, big_mask=big_mask)
+
+        # Skip densification if no valid samples and all would be pruned (e.g., after checkpoint load with zeroed tracking tensors)
+        if add_idx.numel() == 0 and dead_mask.all():
+            print("Skipping densification: no valid samples and all triangles marked as dead (likely checkpoint resume)")
+            return 0
 
         big_mask   = compar[add_idx] > self.split_size
         small_mask = ~big_mask

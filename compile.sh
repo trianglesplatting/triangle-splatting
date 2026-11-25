@@ -6,7 +6,7 @@ cd submodules/diff-triangle-rasterization/
 rm -rf build
 rm -rf diff_triangle_rasterization.egg-info
 
-pip install .
+pip install --no-build-isolation .
 
 cd ..
 cd ..
