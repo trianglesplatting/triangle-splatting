@@ -49,6 +49,11 @@ cd submodules/simple-knn
 pip install .
 ```
 
+> **Note:** If `nvcc` reports an unsupported host compiler version, point it at a `g++` that your CUDA toolkit supports before running `compile.sh`, e.g.:
+> ```bash
+> export NVCC_CCBIN=/usr/bin/g++-14   # match a GCC version supported by your CUDA toolkit
+> ```
+
 ## Training
 To train our model, you can use the following command:
 ```bash
